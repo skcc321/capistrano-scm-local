@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = "capistrano-scm-local"
-  s.version = "0.1.24"
+  s.version = "0.1.25"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Boris Gorbylev"]
-  s.date = "2015-04-20"
+  s.authors = ["Boris Gorbylev", "Viktor Sych"]
+  s.date = "2017-12-21"
   s.description = "Capistrano extension for deploying form local directory"
-  s.email = "ekho@ekho.name"
+  s.email = "skcc321@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE",
     "README.md",
@@ -32,10 +32,10 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/test_capistrano-git-local.rb"
   ]
-  s.homepage = "http://github.com/ekho/capistrano-scm-local"
+  s.homepage = "https://github.com/skcc321/capistrano-scm-local"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.23"
+  s.rubygems_version = "1.8.24"
   s.summary = "Capistrano SCM Local - Deploy from local copy"
 
   if s.respond_to? :specification_version then

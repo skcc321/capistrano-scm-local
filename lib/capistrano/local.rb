@@ -222,7 +222,7 @@ class Capistrano::Local < Capistrano::SCM
 
         if test :test, '-d', source_path || !File.fnmatch("*#{@file_ext}", source_path)
           within source_path do
-            execute :tar, "#{@compression_flag}cf", archive, '.'
+            execute :tar, "#{exclude_list} #{@compression_flag}cf", archive, '.'
           end
         elsif test(:test, '-f', source_path) && File.fnmatch("*#{@file_ext}", source_path)
           execute :cp, source_path, archive
@@ -241,6 +241,18 @@ class Capistrano::Local < Capistrano::SCM
         execute :tar, "#{compression_flag}xf", archive, '-C', dest_path
         execute :rm, '-f', archive unless keep_archive
       end
+    end
+
+    def exclude_list
+      gitignore = File.readlines('.gitignore').map(&:strip).reject do |ignored_file_name|
+        ignored_file_name.empty? || ignored_file_name.start_with?('#')
+      end.unshift('.git')
+
+      gitignore.map do |ignored_file_name|
+        "--exclude='#{ignored_file_name}'"
+      end
+
+      gitignore.join(' ')
     end
   end
 end
